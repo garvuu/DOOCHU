@@ -1,43 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Happy Birthday</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+document.addEventListener("DOMContentLoaded", function () {
+    const playBtn = document.getElementById("play");
+    const song = document.querySelector(".song");
+    const loader = document.querySelector(".loader");
+    const main = document.querySelector(".main");
 
-    <!-- ❌ REMOVED BROKEN BOOTSTRAP LINK -->
-    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    playBtn.addEventListener("click", async function () {
+        try {
+            await song.play(); // mobile-safe
+        } catch (e) {
+            console.log("Audio blocked, continuing anyway");
+        }
 
-    <link rel="stylesheet" href="style.css">
-</head>
+        loader.style.display = "none";
+        main.style.display = "block";
+    });
+});
 
-<body>
-
-    <!-- START SCREEN -->
-    <div class="container">
-        <div class="row">
-            <div class="loader">
-                <button id="play">Start</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- AUDIO -->
-    <audio class="song" loop>
-        <source src="music.mp3" type="audio/mpeg">
-        Your browser does not support audio.
-    </audio>
-
-    <canvas id="confetti"></canvas>
-
-    <!-- MAIN CONTENT (HIDDEN UNTIL START) -->
-    <div class="main" style="display:none;">
-        <div class="container pt-5">
-            <div class="row">
-
-                <div class="col-12">
-                    <img src="img/banner.png" alt="">
-                </div>
-
-                <div class="col-12 text-center">
-                    <div id="name" class="are
