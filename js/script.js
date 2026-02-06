@@ -5,13 +5,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const main = document.querySelector(".main");
 
     playBtn.addEventListener("click", async function () {
+
+        // 🔹 AUDIO (mobile safe)
         try {
-            await song.play(); // mobile-safe
+            await song.play();
         } catch (e) {
-            console.log("Audio blocked, continuing anyway");
+            console.log("Audio blocked, continuing");
         }
 
+        // 🔹 SHOW MAIN CONTENT
         loader.style.display = "none";
         main.style.display = "block";
+
+        // 🔹 START TYPED *AFTER CLICK* (THIS FIXES MOBILE)
+        new Typed("#typed", {
+            stringsElement: "#typed-strings",
+            typeSpeed: 50,
+            backSpeed: 25,
+            loop: true
+        });
     });
 });
+
